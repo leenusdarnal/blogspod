@@ -8,24 +8,25 @@
 }
 
 .Header--title {
+  padding: 7px 10px;
   font-size: $l-size;
   font-weight: 500;
   letter-spacing: 2px;
 }
 
 .Header--input {
-    padding: 7px;
-    input {
-        border: none;
-        border-radius: 2em;
-        padding-left: $l-size;
-        height: 2rem;
-        width: 40rem;
-        min-width: 20rem;
-    }
-    input:focus {
-        outline: none;
-    }
+  padding: 7px 14px;
+  input {
+    border: none;
+    border-radius: 2em;
+    padding-left: $l-size;
+    height: 2rem;
+    width: 30rem;
+    min-width: 20rem;
+  }
+  input:focus {
+    outline: none;
+  }
 }
 
 .Header--nav {
