@@ -10,6 +10,10 @@ PlatformBarConfig["on_auth_state_change"] = function (state) {
 };
 
 export default class Main extends React.Component {
+    state = {
+        set:"Read"
+    }
+    handerNavButton = (x) => this.setState({set: x})
     constructor(props) {
         super(props);
         if (!window.React) {
@@ -19,20 +23,39 @@ export default class Main extends React.Component {
     }
     render() {
         return (
-            <div className="Header">
-                <div className="Header--title">
-                    BlogsPod
+            <div>
+                <div className="Header">
+                    <div className="Header--title">
+                        BlogsPod
+                    </div>
+                    <div className="Header--input">
+                        <input placeholder="seach tags"/>
+                    </div>
+                    <div className="Header--nav">
+                        <div className="Header--nav__button__container">
+                            <div className="Header--nav__button" onClick={()=>{this.handerNavButton("Read")}}
+                            >
+                                <span>READ</span>
+                            </div>
+                        </div>
+                        <div className="Header--nav__button__container">
+                            <div className="Header--nav__button" onClick={()=>{this.handerNavButton("Create")}}>
+                                <span>CREATE</span>
+                            </div>
+                        </div>
+                        <div>
+                            <Authenticator initConfig={PlatformBarConfig} />
+                        </div>
+                    </div>
                 </div>
-                <div className="Header--input">
-                    <input placeholder="seach tags"/>
+                <div className="Main--body">
+                    {
+                        this.state.set==="Read" && <p>this is the read tab</p>
+                    }
+                    {
+                        this.state.set==="Create" && <p>this is the create tab</p>
+                    }
                 </div>
-                <ul>
-                    <li>Read</li>
-                    <li>Create</li>
-                    <li>
-                        <Authenticator initConfig={PlatformBarConfig} />
-                    </li>
-                </ul>
             </div>
         )
     }
