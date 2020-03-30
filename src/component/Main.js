@@ -3,6 +3,9 @@ import ReactDOM from "react-dom";
 import { Authenticator } from "@bitpod/platform-bar-shell-react";
 import { getPlatformBarConfig } from '../config';
 
+import ReadTab from './Read';
+import CreateTab from './Create';
+
 let PlatformBarConfig = getPlatformBarConfig();
 
 PlatformBarConfig["on_auth_state_change"] = function (state) {
@@ -50,10 +53,10 @@ export default class Main extends React.Component {
                 </div>
                 <div className="Main--body">
                     {
-                        this.state.set==="Read" && <p>this is the read tab</p>
+                        this.state.set==="Read" && <ReadTab />
                     }
                     {
-                        this.state.set==="Create" && <p>this is the create tab</p>
+                        this.state.set==="Create" && <CreateTab />
                     }
                 </div>
             </div>
