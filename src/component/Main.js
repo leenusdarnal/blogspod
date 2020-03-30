@@ -7,16 +7,23 @@ import ReadTab from './Read';
 import CreateTab from './Create';
 
 let PlatformBarConfig = getPlatformBarConfig();
-
-PlatformBarConfig["on_auth_state_change"] = function (state) {
-    console.log("state", state);
-};
+PlatformBarConfig["on_auth_state_change"] = function (checkin) {
+    console.log("state", checkin);
+}
 
 export default class Main extends React.Component {
     state = {
-        set:"Read"
+        set:"Read",
+        checkin: false
     }
-    handerNavButton = (x) => this.setState({set: x})
+    componentDidMount(){
+        setTimeout(()=>{
+            const t = JSON.parse(localStorage[localStorage[window.$config.oauth.clientId+"lastactiveuserid"]]).guestUser;
+            this.setState({checkin: t});
+        },500);
+    }
+    updatechecking = (checkin) => this.setState({checkin});
+    handerNavButton = (x) => this.setState({set: x});
     constructor(props) {
         super(props);
         if (!window.React) {
@@ -41,11 +48,14 @@ export default class Main extends React.Component {
                                 <span>READ</span>
                             </div>
                         </div>
-                        <div className="Header--nav__button__container">
-                            <div className="Header--nav__button" onClick={()=>{this.handerNavButton("Create")}}>
-                                <span>CREATE</span>
+                        {
+                            !this.state.checkin &&
+                            <div className="Header--nav__button__container">
+                                <div className="Header--nav__button" onClick={()=>{this.handerNavButton("Create")}}>
+                                    <span>CREATE</span>
+                                </div>
                             </div>
-                        </div>
+                        }
                         <div>
                             <Authenticator initConfig={PlatformBarConfig} />
                         </div>
