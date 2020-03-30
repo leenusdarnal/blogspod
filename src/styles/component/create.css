@@ -1,0 +1,12 @@
+.editorContainer{
+    margin: 10px;
+    
+    }
+    .editor{
+        margin: 2px;
+        border: 2px solid black;
+    }
+    .styleBtn{
+        margin: 2px;
+        border: 1px solid black;
+    }
