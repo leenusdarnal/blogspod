@@ -7,12 +7,24 @@
 .editor {
     margin: 2px;
     padding: $m-size;
-    border: 2px solid black;
+    border: 1px solid black;
+    background: white;
 }
+
+.editor:focus {
+    border: none;
+}
+
 .styleBtn {
     margin: 2px;
     padding: 2px $m-size;
     border: 1px solid black;
+    transition: background 300ms, color 100ms;
+}
+
+.styleBtn:hover {
+    background: $blue;
+    color: $off-white;
 }
 
 .RichEditor-controls {
