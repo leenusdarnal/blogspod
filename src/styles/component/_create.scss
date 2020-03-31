@@ -1,3 +1,20 @@
 #customEditor {
     background-color: white;
 }
+.editorContainer {
+    margin: 10px;
+}
+.editor {
+    margin: 2px;
+    padding: $m-size;
+    border: 2px solid black;
+}
+.styleBtn {
+    margin: 2px;
+    padding: 2px $m-size;
+    border: 1px solid black;
+}
+
+.RichEditor-controls {
+    display: flex;
+}
