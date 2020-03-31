@@ -4,7 +4,8 @@ import { Authenticator } from "@bitpod/platform-bar-shell-react";
 import { getPlatformBarConfig } from '../config';
 
 import ReadTab from './Read';
-import CreateTab from './Create';
+import AlloyEditorComponent from './alloyeditor';
+
 
 let PlatformBarConfig = getPlatformBarConfig();
 PlatformBarConfig["on_auth_state_change"] = function (checkin) {
@@ -14,7 +15,7 @@ PlatformBarConfig["on_auth_state_change"] = function (checkin) {
 export default class Main extends React.Component {
     state = {
         set:"Read",
-        logUserStatus: {guestUser:true}
+        logUserStatus: {guestUser:false}
     }
     componentDidMount(){
         setTimeout(()=>{
@@ -81,7 +82,10 @@ export default class Main extends React.Component {
                         this.state.set==="Read" && <ReadTab userData={this.state.logUserStatus.userProfile}/>
                     }
                     {
-                        this.state.set==="Create" && <CreateTab />
+                        this.state.set==="Create" &&
+                        <AlloyEditorComponent 
+                        container='editable'
+                        />
                     }
                 </div>
             </div>
