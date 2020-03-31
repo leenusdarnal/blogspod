@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{Component, Fragment}  from 'react';
 import ReactDOM from "react-dom";
 import { Authenticator } from "@bitpod/platform-bar-shell-react";
 import { getPlatformBarConfig } from '../config';
@@ -12,10 +12,10 @@ PlatformBarConfig["on_auth_state_change"] = function (checkin) {
     console.log("state", checkin);
 }
 
-export default class Main extends React.Component {
+export default class Main extends Component {
     state = {
         set:"Read",
-        logUserStatus: {guestUser:false}
+        logUserStatus: {guestUser:true}
     }
     componentDidMount(){
         setTimeout(()=>{
@@ -83,9 +83,19 @@ export default class Main extends React.Component {
                     }
                     {
                         this.state.set==="Create" &&
-                        <AlloyEditorComponent 
-                        container='editable'
-                        />
+                    <Fragment>
+                        <AlloyEditorComponent container='title'>
+                            <h1>AlloyEditor will make this content editable</h1>
+                        </AlloyEditorComponent>
+                        <AlloyEditorComponent container='editable'>
+                            <p>
+                                To install React, follow the instructions on <a href="https://github.com/facebook/react/">GitHub</a>.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel metus nunc. Maecenas rhoncus congue faucibus. Sed finibus ultrices turpis. Mauris nulla ante, aliquam a euismod ut, scelerisque nec sem. Nam dapibus ac nulla non ullamcorper. Sed vestibulum a velit non lobortis. Proin sit amet imperdiet urna. Aenean interdum urna augue, vel mollis tortor dictum vitae. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris vitae suscipit magna.
+                            </p>
+                        </AlloyEditorComponent>
+                    </Fragment>
                     }
                 </div>
             </div>

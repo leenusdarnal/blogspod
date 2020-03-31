@@ -1880,15 +1880,10 @@ ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.0, ajv@^6.5.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-alloyeditor@^2.11.6:
-  version "2.11.6"
-  resolved "https://registry.yarnpkg.com/alloyeditor/-/alloyeditor-2.11.6.tgz#a89cfeae7e613243fc871cb0dddb29adb41c8247"
-  integrity sha512-OqTgkigkV53wVVXn0eITUMFeqHQAb1q8SJAo0ygbx6fB4/xQxq/5j+YODWHY2EwYRsR5pZDL96b3rHKVH/v2yw==
-  dependencies:
-    clay-css "^2.11.1"
-    prop-types "^15.6.2"
-    react "^16.8.3"
-    react-dom "^16.8.3"
+alloyeditor@^1.5.1:
+  version "1.5.27"
+  resolved "https://registry.yarnpkg.com/alloyeditor/-/alloyeditor-1.5.27.tgz#f4bb78e2813577ca142c865bd7f22a4ad6412b85"
+  integrity sha512-mRITmjUXkm3BpLbttr0f/kvsWmQpDy8JiO7DiKY1yC7scveLl1uv8KSGnGBh21GHeu3mrRLGF9uB9eAZN5IVcw==
 
 alphanum-sort@^1.0.0:
   version "1.0.2"
@@ -2892,11 +2887,6 @@ classnames@^2.2.3:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
-
-clay-css@^2.11.1:
-  version "2.21.0"
-  resolved "https://registry.yarnpkg.com/clay-css/-/clay-css-2.21.0.tgz#96f96db5bb9631b6d493065b742626413b7ade80"
-  integrity sha512-4U9jDSzH2cAIoMgaxI/35qCPtWdfqviDFYHdXzKJG21WeBUyxnZV8Lm/I92Y3o7e42JNTY6rHYr3XQzuwZu78w==
 
 clean-css@^4.2.3:
   version "4.2.3"
@@ -8957,7 +8947,7 @@ react-dev-utils@^10.2.1:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
-react-dom@^16.13.1, react-dom@^16.8.3:
+react-dom@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
   integrity sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag==
@@ -9050,7 +9040,7 @@ react-scripts@3.4.1:
   optionalDependencies:
     fsevents "2.1.2"
 
-react@^16.0.0, react@^16.13.1, react@^16.8.3:
+react@^16.0.0, react@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
   integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
