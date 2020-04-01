@@ -1,4 +1,4 @@
-import React ,{Component, Fragment}  from 'react';
+import React ,{Component}  from 'react';
 import ReactDOM from "react-dom";
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import { Authenticator } from "@bitpod/platform-bar-shell-react";
@@ -15,6 +15,7 @@ PlatformBarConfig["on_auth_state_change"] = function (checkin) {
 export default class Main extends Component {
     state = {
         set:"Read",
+        tagString:"",
         logUserStatus: {guestUser:true}
     }
     componentWillMount(){
@@ -45,12 +46,10 @@ export default class Main extends Component {
             window.ReactDOM = ReactDOM;
         }
     }
-    handletitlechange = (x) => {
-        console.log(x);
-        // this.state.title = x;
-    }
-    onEditorMounted =(x) =>{
-        
+    handletitlechange = (x) => {console.log(x);}
+    onEditorMounted =(x) =>{}
+    handleSearchBar = () =>{
+        this.setState({tagString: document.getElementById('searchBar').value})
     }
     render() {
         return (
@@ -60,7 +59,7 @@ export default class Main extends Component {
                         BlogsPod
                     </div>
                     <div className="Header--input">
-                        <input placeholder="seach tags"/>
+                        <input id="searchBar" placeholder="seach tags" onKeyUp={this.handleSearchBar} />
                     </div>
                     <div className="Header--nav">
                         <Link to="/read">
@@ -88,7 +87,9 @@ export default class Main extends Component {
                 </div>
                 <div className="Main--body">
                     <Switch>
-                        <Route path="/read" component={ReadTab} />
+                        <Route 
+                            path="/read" 
+                            render={()=><ReadTab tagString={this.state.tagString} />} />
                         <Route path="/create" component={CreateTab} />
                     </Switch>
                     {/* save button  */}

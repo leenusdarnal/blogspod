@@ -7,6 +7,7 @@ export default class Read extends React.Component {
     render() {
         return (
             <div>
+                {this.props.tagString}<br/>
                 this is the read tab
             </div>
         )
