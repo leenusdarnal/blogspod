@@ -1,5 +1,6 @@
-import React from 'react';
+import React ,{Component, Fragment}  from 'react';
 import ReactDOM from "react-dom";
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import { Authenticator } from "@bitpod/platform-bar-shell-react";
 import { getPlatformBarConfig } from '../config';
 
@@ -11,14 +12,13 @@ PlatformBarConfig["on_auth_state_change"] = function (checkin) {
     console.log("state", checkin);
 }
 
-export default class Main extends React.Component {
+export default class Main extends Component {
     state = {
         set:"Read",
         logUserStatus: {guestUser:true}
     }
-    componentDidMount(){
+    componentWillMount(){
         setTimeout(()=>{
-            // const t = JSON.parse(localStorage[localStorage[window.$config.oauth.clientId+"lastactiveuserid"]]).guestUser;
             this.setState({logUserStatus: [JSON.parse(localStorage[localStorage[window.$config.oauth.clientId+"lastactiveuserid"]])].map(e=>{
                 return {
                     guestUser : e.guestUser,
@@ -35,7 +35,7 @@ export default class Main extends React.Component {
                     }
                 }
             })[0] });
-        },1000);
+        },2500);
     }
     handerNavButton = (x) => this.setState({set: x});
     constructor(props) {
@@ -44,11 +44,17 @@ export default class Main extends React.Component {
             window.React = React;
             window.ReactDOM = ReactDOM;
         }
-        setTimeout(console.log("wait time out"),3000);
+    }
+    handletitlechange = (x) => {
+        console.log(x);
+        // this.state.title = x;
+    }
+    onEditorMounted =(x) =>{
+        
     }
     render() {
         return (
-            <div>
+            <Router>
                 <div className="Header">
                     <div className="Header--title">
                         BlogsPod
@@ -57,19 +63,23 @@ export default class Main extends React.Component {
                         <input placeholder="seach tags"/>
                     </div>
                     <div className="Header--nav">
-                        <div className="Header--nav__button__container">
-                            <div className="Header--nav__button" onClick={()=>{this.handerNavButton("Read")}}
-                            >
-                                <span>READ</span>
-                            </div>
-                        </div>
-                        {
-                            !this.state.logUserStatus.guestUser &&
+                        <Link to="/read">
                             <div className="Header--nav__button__container">
-                                <div className="Header--nav__button" onClick={()=>{this.handerNavButton("Create")}}>
-                                    <span>CREATE</span>
+                                <div className="Header--nav__button" onClick={()=>{this.handerNavButton("Read")}}
+                                >
+                                    <span>READ</span>
                                 </div>
                             </div>
+                        </Link>
+                        {
+                            !this.state.logUserStatus.guestUser &&
+                            <Link to='/create'>
+                                <div className="Header--nav__button__container">
+                                    <div className="Header--nav__button" onClick={()=>{this.handerNavButton("Create")}}>
+                                        <span>CREATE</span>
+                                    </div>
+                                </div>
+                            </Link>
                         }
                         <div>
                             <Authenticator initConfig={PlatformBarConfig} />
@@ -77,14 +87,13 @@ export default class Main extends React.Component {
                     </div>
                 </div>
                 <div className="Main--body">
-                    {
-                        this.state.set==="Read" && <ReadTab userData={this.state.logUserStatus.userProfile}/>
-                    }
-                    {
-                        this.state.set==="Create" && <CreateTab />
-                    }
+                    <Switch>
+                        <Route path="/read" component={ReadTab} />
+                        <Route path="/create" component={CreateTab} />
+                    </Switch>
+                    {/* save button  */}
                 </div>
-            </div>
+            </Router>
         )
     }
 }
