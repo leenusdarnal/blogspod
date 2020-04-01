@@ -1,4 +1,4 @@
-import React ,{Component, Fragment}  from 'react';
+import React ,{Component}  from 'react';
 import ReactDOM from "react-dom";
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import { Authenticator } from "@bitpod/platform-bar-shell-react";
@@ -15,7 +15,8 @@ PlatformBarConfig["on_auth_state_change"] = function (checkin) {
 export default class Main extends Component {
     state = {
         set:"Read",
-        logUserStatus: {guestUser:true}
+        logUserStatus: {guestUser:true},
+        search : ""
     }
     componentWillMount(){
         setTimeout(()=>{
@@ -60,7 +61,7 @@ export default class Main extends Component {
                         BlogsPod
                     </div>
                     <div className="Header--input">
-                        <input placeholder="seach tags"/>
+                        <input   placeholder = "search tags"  onKeyUp={(e) => {   return this.setState({search:e.target.value}) }   }/>
                     </div>
                     <div className="Header--nav">
                         <Link to="/read">
@@ -88,7 +89,7 @@ export default class Main extends Component {
                 </div>
                 <div className="Main--body">
                     <Switch>
-                        <Route path="/read" component={ReadTab} />
+                        <Route path="/read" render={() => { return <ReadTab search={this.state.search}  /> } }/>
                         <Route path="/create" component={CreateTab} />
                     </Switch>
                     {/* save button  */}

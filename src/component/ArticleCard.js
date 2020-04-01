@@ -4,11 +4,9 @@ import ReactHtmlParser from 'react-html-parser';
 const ArticleCard = ({articles}) => {
 
 
-
     return(
-        !articles.length?<h1>Loading...</h1> :(
+        !articles.length ? <h1>Loading...</h1> :(
         articles.map((article) =>{
-
             return(
                 <div className="articleContianer">
                 <div>{ReactHtmlParser(article.Title)}</div>
@@ -21,9 +19,6 @@ const ArticleCard = ({articles}) => {
             )
         })
         )
-
-
-
     )
 
 }

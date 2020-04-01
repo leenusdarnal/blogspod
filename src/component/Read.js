@@ -1,11 +1,12 @@
 import React ,{Component} from  "react";
 import ArticleCard from "./ArticleCard";
 
-export default class Read extends Component {
+class Read extends Component {
     constructor(){
         super();
         this.state = {
-            articles:[]
+            articles:[],
+            search: ''
         }
     }
 
@@ -21,15 +22,32 @@ export default class Read extends Component {
     .then(response =>{
         console.log(response);
         return this.setState({articles:response})  } );
-    };
+        
+    }
+    componentWillReceiveProps(props) {
+        console.log(props);
+        return this.setState({search : props.search})
+        
+    }
+
+    // toFillterArticle = (article,search) =>{
+    //     article.Tags.filter((tags) => tags.toString().toLowerCase().includes(search.toString().toLowerCase()));
+    // } 
+
 
     render(){
+        const {articles, search} = this.state;
+
+
+        let filteredArticles = search === "" ? articles: articles.filter(article => article.Tags.toString().toLowerCase().includes(search.toString().toLowerCase()))
+        console.log(filteredArticles);
+        debugger
         return(
             <div className="articleListConatiner">
-            
-            <ArticleCard articles={this.state.articles}/>
-
+                <ArticleCard articles={filteredArticles}/>
             </div>
         )
     }
 }
+
+export default  Read;
