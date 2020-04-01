@@ -1,11 +1,11 @@
 import React ,{Component, Fragment}  from 'react';
 import ReactDOM from "react-dom";
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import { Authenticator } from "@bitpod/platform-bar-shell-react";
 import { getPlatformBarConfig } from '../config';
 
 import ReadTab from './Read';
-import AlloyEditorComponent from './alloyeditor';
-
+import CreateTab from './Create';
 
 let PlatformBarConfig = getPlatformBarConfig();
 PlatformBarConfig["on_auth_state_change"] = function (checkin) {
@@ -17,9 +17,8 @@ export default class Main extends Component {
         set:"Read",
         logUserStatus: {guestUser:true}
     }
-    componentDidMount(){
+    componentWillMount(){
         setTimeout(()=>{
-            // const t = JSON.parse(localStorage[localStorage[window.$config.oauth.clientId+"lastactiveuserid"]]).guestUser;
             this.setState({logUserStatus: [JSON.parse(localStorage[localStorage[window.$config.oauth.clientId+"lastactiveuserid"]])].map(e=>{
                 return {
                     guestUser : e.guestUser,
@@ -36,7 +35,7 @@ export default class Main extends Component {
                     }
                 }
             })[0] });
-        },1000);
+        },2500);
     }
     handerNavButton = (x) => this.setState({set: x});
     constructor(props) {
@@ -45,11 +44,17 @@ export default class Main extends Component {
             window.React = React;
             window.ReactDOM = ReactDOM;
         }
-        setTimeout(console.log("wait time out"),3000);
+    }
+    handletitlechange = (x) => {
+        console.log(x);
+        // this.state.title = x;
+    }
+    onEditorMounted =(x) =>{
+        
     }
     render() {
         return (
-            <div>
+            <Router>
                 <div className="Header">
                     <div className="Header--title">
                         BlogsPod
@@ -58,19 +63,23 @@ export default class Main extends Component {
                         <input placeholder="seach tags"/>
                     </div>
                     <div className="Header--nav">
-                        <div className="Header--nav__button__container">
-                            <div className="Header--nav__button" onClick={()=>{this.handerNavButton("Read")}}
-                            >
-                                <span>READ</span>
-                            </div>
-                        </div>
-                        {
-                            !this.state.logUserStatus.guestUser &&
+                        <Link to="/read">
                             <div className="Header--nav__button__container">
-                                <div className="Header--nav__button" onClick={()=>{this.handerNavButton("Create")}}>
-                                    <span>CREATE</span>
+                                <div className="Header--nav__button" onClick={()=>{this.handerNavButton("Read")}}
+                                >
+                                    <span>READ</span>
                                 </div>
                             </div>
+                        </Link>
+                        {
+                            !this.state.logUserStatus.guestUser &&
+                            <Link to='/create'>
+                                <div className="Header--nav__button__container">
+                                    <div className="Header--nav__button" onClick={()=>{this.handerNavButton("Create")}}>
+                                        <span>CREATE</span>
+                                    </div>
+                                </div>
+                            </Link>
                         }
                         <div>
                             <Authenticator initConfig={PlatformBarConfig} />
@@ -78,27 +87,13 @@ export default class Main extends Component {
                     </div>
                 </div>
                 <div className="Main--body">
-                    {
-                        this.state.set==="Read" && <ReadTab userData={this.state.logUserStatus.userProfile}/>
-                    }
-                    {
-                        this.state.set==="Create" &&
-                    <Fragment>
-                        <AlloyEditorComponent container='title'>
-                            <h1>AlloyEditor will make this content editable</h1>
-                        </AlloyEditorComponent>
-                        <AlloyEditorComponent container='editable'>
-                            <p>
-                                To install React, follow the instructions on <a href="https://github.com/facebook/react/">GitHub</a>.
-                            </p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel metus nunc. Maecenas rhoncus congue faucibus. Sed finibus ultrices turpis. Mauris nulla ante, aliquam a euismod ut, scelerisque nec sem. Nam dapibus ac nulla non ullamcorper. Sed vestibulum a velit non lobortis. Proin sit amet imperdiet urna. Aenean interdum urna augue, vel mollis tortor dictum vitae. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris vitae suscipit magna.
-                            </p>
-                        </AlloyEditorComponent>
-                    </Fragment>
-                    }
+                    <Switch>
+                        <Route path="/read" component={ReadTab} />
+                        <Route path="/create" component={CreateTab} />
+                    </Switch>
+                    {/* save button  */}
                 </div>
-            </div>
+            </Router>
         )
     }
 }
