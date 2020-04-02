@@ -64,7 +64,7 @@ export default class Main extends Component {
                     </div>
                     <Route path='/read' render={()=>(
                         <div className="Header--input">
-                            <input disabled={window.location.href.includes('article')} placeholder="search tags" onKeyUp={(e) => { return this.setState({ search: e.target.value }) }} />
+                            <input disabled={window.location.href.includes('article')} placeholder="Search topics" onKeyUp={(e) => { return this.setState({ search: e.target.value }) }} />
                         </div>
                     )}/>
                     <div className="Header--nav">
