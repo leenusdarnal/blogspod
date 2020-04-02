@@ -14,7 +14,7 @@ export default class Create extends Component {
                     }}
                 />
                 <hr/>
-                <Dante read_only={true} content={this.state.mycontent}/>
+                {/* <Dante read_only={true} content={this.state.mycontent}/> */}
             </div>
         )
     }

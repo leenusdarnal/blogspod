@@ -118,7 +118,8 @@
 }
 
 .Main--body {
-  width: 81rem;
+  min-width: 55rem;
+  max-width: 70rem;
   background: lighten(grey, 48);
   margin:0 auto;
   padding: 3rem;
