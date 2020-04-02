@@ -1,20 +1,33 @@
-import React, {Component}  from 'react';
+import React, { Component } from 'react';
 import Dante from 'Dante2';
+import {stateToHTML} from 'draft-js-export-html';
+
 export default class Create extends Component {
-    state={
+    state = {
         mycontent: null
     }
-    render(){
+    content={};
+    // status=false;
+    render() {
+        // if(this.status){
+        //     console.log(stateToHTML(this.content))
+        // }
         return (
             <div>
-                <Dante 
-                    onChange={editor => { 
+                <Dante
+                    editorState={this.state.editorState}
+                    onChange={editor => {
+                        // console.log(stateToHTML(editor.state.editorState._immutable.currentContent))
                         // console.log('editor content: ', editor.emitSerializedOutput());
-                        this.setState({mycontent: editor.emitSerializedOutput().blocks})
+                        // console.log(stateToHTML(editor.emitSerializedOutput()))
+                        this.setState({ mycontent: editor,contentObj: stateToHTML(editor.state.editorState._immutable.currentContent)})
                     }}
                 />
-                <hr/>
-                {/* <Dante read_only={true} content={this.state.mycontent}/> */}
+                <hr />
+                {this.state.contentObj}
+                <button onClick={()=>{
+                    console.log(stateToHTML(this.state.mycontent.state.editorState._immutable.currentContent))
+                }}>click me</button>
             </div>
         )
     }
