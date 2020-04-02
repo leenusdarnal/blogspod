@@ -61,10 +61,10 @@ export default class Main extends Component {
                         BlogsPod
                     </div>
                     <div className="Header--input">
-                        <input   placeholder = "search tags"  onKeyUp={(e) => {   return this.setState({search:e.target.value}) }   }/>
+                        <input placeholder = "search tags"  onKeyUp={(e) => {   return this.setState({search:e.target.value}) }   }/>
                     </div>
                     <div className="Header--nav">
-                        <Link to="/read">
+                        <Link to="/read" style={{ textDecoration: 'none' }}>
                             <div className="Header--nav__button__container">
                                 <div className="Header--nav__button" onClick={()=>{this.handerNavButton("Read")}}
                                 >
@@ -74,7 +74,7 @@ export default class Main extends Component {
                         </Link>
                         {
                             !this.state.logUserStatus.guestUser &&
-                            <Link to='/create'>
+                            <Link to='/create' style={{ textDecoration: 'none' }}>
                                 <div className="Header--nav__button__container">
                                     <div className="Header--nav__button" onClick={()=>{this.handerNavButton("Create")}}>
                                         <span>CREATE</span>
