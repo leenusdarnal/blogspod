@@ -10,16 +10,16 @@ class Article extends Component{
         }
     }
 componentWillReceiveProps(props){
-    this.setState({article:props})
+    this.setState({article:props.article})
 }
     render(){
         return(
             <div className="articleContianer">
             <h1>Article</h1>
-                <div>{ReactHtmlParser(this.state.article.Title)}</div>
+                <div>{ReactHtmlParser(this.props.article.Title)}</div>
                 <br/>
                 <div>
-                    { ReactHtmlParser(this.state.article.Content) }
+                    { ReactHtmlParser(this.props.article.Content) }
 
                 </div>
 
