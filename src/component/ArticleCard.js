@@ -13,11 +13,10 @@ const ArticleCard = ({ articles }) => {
                     <div className="articleContianer">
                         <Switch>
                             <Route path={"/read"} exact>
-                                <Link to={"/read/article-" + article.id} >
-                                    <div>{ReactHtmlParser(article.Title)}</div>
-                                    <br />
-                                    <div>
-                                        {ReactHtmlParser(article.Content)}
+                                <Link to={"/read/article-" + article.id}  style={{ textDecoration: 'none' }}>
+                                    <div className="article--container">
+                                        <div className='article--container__title'>{ReactHtmlParser(article.Title)}</div>
+                                        <div className='article--container__content'>{ReactHtmlParser(article.Content)}</div>
                                     </div>
                                 </Link>
                             </Route>
