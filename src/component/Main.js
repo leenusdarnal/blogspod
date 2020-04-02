@@ -6,6 +6,7 @@ import { getPlatformBarConfig } from '../config';
 
 import ReadTab from './Read';
 import CreateTab from './Create';
+import SearchBar from "./SearchBar";
 
 let PlatformBarConfig = getPlatformBarConfig();
 PlatformBarConfig["on_auth_state_change"] = function (checkin) {
@@ -64,7 +65,12 @@ export default class Main extends Component {
                     </div>
                     <Route path='/read' render={()=>(
                         <div className="Header--input">
-                            <input disabled={window.location.href.includes('article')} placeholder="Search topics" onKeyUp={(e) => { return this.setState({ search: e.target.value }) }} />
+                            <SearchBar  
+                            disabled={window.location.href.includes('article')} 
+                            placeholder="Search topics"
+                            onKeyUp={(e) => { return this.setState({ search: e.target.value }) }}
+                            suggestions={["Science","Math","Technology"]}/>
+                            {/* <input disabled={window.location.href.includes('article')} placeholder="Search topics" onKeyUp={(e) => { return this.setState({ search: e.target.value }) }} /> */}
                         </div>
                     )}/>
                     <div className="Header--nav">

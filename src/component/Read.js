@@ -35,9 +35,10 @@ class Read extends Component {
 
     render() {
         const { articles, search } = this.state;
+        const filterSearch =search.split(" ").join(",")
 
 
-        let filteredArticles = search === "" ? articles : articles.filter(article => article.Tags.toString().toLowerCase().includes(search.toString().toLowerCase()))
+        let filteredArticles = search === "" ? articles : articles.filter(article => article.Tags.toString().toLowerCase().includes(filterSearch.toString().toLowerCase()))
         console.log(filteredArticles);
         return (
             <div className="articleListConatiner">
