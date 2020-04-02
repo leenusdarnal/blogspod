@@ -15,18 +15,34 @@ export default class Create extends Component {
         return (
             <div>
                 <Dante
-                    editorState={this.state.editorState}
+                    body_placeholder={"Title here"}
                     onChange={editor => {
-                        // console.log(stateToHTML(editor.state.editorState._immutable.currentContent))
-                        // console.log('editor content: ', editor.emitSerializedOutput());
-                        // console.log(stateToHTML(editor.emitSerializedOutput()))
-                        this.setState({ mycontent: editor,contentObj: stateToHTML(editor.state.editorState._immutable.currentContent)})
+                        this.setState({ Title: editor,titleObj: stateToHTML(editor.state.editorState._immutable.currentContent)})
                     }}
                 />
+                <Dante
+                    onChange={editor => {
+                        this.setState({ Content: editor,contentObj: stateToHTML(editor.state.editorState._immutable.currentContent)})
+                    }}
+                />
+
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+
                 <hr />
+                {this.state.titleObj}
+                <br/>
                 {this.state.contentObj}
+                <br/>
+                
+                
                 <button onClick={()=>{
-                    console.log(stateToHTML(this.state.mycontent.state.editorState._immutable.currentContent))
+                    console.log(stateToHTML(this.state.Title.state.editorState._immutable.currentContent))
+                    console.log(stateToHTML(this.state.Content.state.editorState._immutable.currentContent))
                 }}>click me</button>
             </div>
         )
