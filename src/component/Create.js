@@ -1,20 +1,49 @@
-import React, {Component}  from 'react';
+import React, { Component } from 'react';
 import Dante from 'Dante2';
+import {stateToHTML} from 'draft-js-export-html';
+
 export default class Create extends Component {
-    state={
+    state = {
         mycontent: null
     }
-    render(){
+    content={};
+    // status=false;
+    render() {
+        // if(this.status){
+        //     console.log(stateToHTML(this.content))
+        // }
         return (
             <div>
-                <Dante 
-                    onChange={editor => { 
-                        // console.log('editor content: ', editor.emitSerializedOutput());
-                        this.setState({mycontent: editor.emitSerializedOutput().blocks})
+                <Dante
+                    body_placeholder={"Title here"}
+                    onChange={editor => {
+                        this.setState({ Title: editor,titleObj: stateToHTML(editor.state.editorState._immutable.currentContent)})
                     }}
                 />
-                <hr/>
-                {/* <Dante read_only={true} content={this.state.mycontent}/> */}
+                <Dante
+                    onChange={editor => {
+                        this.setState({ Content: editor,contentObj: stateToHTML(editor.state.editorState._immutable.currentContent)})
+                    }}
+                />
+
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+
+                <hr />
+                {this.state.titleObj}
+                <br/>
+                {this.state.contentObj}
+                <br/>
+                
+                
+                <button onClick={()=>{
+                    console.log(stateToHTML(this.state.Title.state.editorState._immutable.currentContent))
+                    console.log(stateToHTML(this.state.Content.state.editorState._immutable.currentContent))
+                }}>click me</button>
             </div>
         )
     }
