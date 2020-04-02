@@ -83,7 +83,7 @@ class SearchBar extends Component {
             if (showSuggestions && userInput) {
                 if (filteredSuggestions.length) {
                     suggestionsListComponent = (
-                    <ul class="suggestions">
+                    <ul class="Header--suggestions suggestions">
                         {filteredSuggestions.map((suggestion, index) => {
                         let className;
 
@@ -101,7 +101,7 @@ class SearchBar extends Component {
                     );
                 } else {
                     suggestionsListComponent = (
-                    <div class="no-suggestions">
+                    <div class="Header--suggestions no-suggestions">
                         <em>No suggestions</em>
                     </div>
                     );

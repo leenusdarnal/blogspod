@@ -124,3 +124,24 @@
   margin:0 auto;
   padding: 3rem;
 }
+
+.Header--suggestions{
+  position: absolute;
+  color: black;
+  background: rgb(231, 231, 231);
+  margin: 0 auto;
+  left:0;
+  right: 8rem;
+  width: 27rem;
+  list-style: none;
+  padding: 0;
+}
+
+.Header--suggestions li{
+  text-align: center;
+  padding: $xs-size 0;
+}
+.Header--suggestions li:hover{
+  background: lighten(grey,10);
+
+}

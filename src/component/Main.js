@@ -69,7 +69,7 @@ export default class Main extends Component {
                             disabled={window.location.href.includes('article')} 
                             placeholder="Search topics"
                             onKeyUp={(e) => { return this.setState({ search: e.target.value }) }}
-                            suggestions={["Science","Math","Technology"]}/>
+                            suggestions={["Science","Science2","Math","Technology"]}/>
                             {/* <input disabled={window.location.href.includes('article')} placeholder="Search topics" onKeyUp={(e) => { return this.setState({ search: e.target.value }) }} /> */}
                         </div>
                     )}/>
