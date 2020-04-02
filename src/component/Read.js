@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import ArticleCard from "./ArticleCard";
 
 class Read extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             articles: [],
             search: ''
