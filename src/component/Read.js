@@ -30,9 +30,6 @@ class Read extends Component {
         
     }
 
-    // toFillterArticle = (article,search) =>{
-    //     article.Tags.filter((tags) => tags.toString().toLowerCase().includes(search.toString().toLowerCase()));
-    // } 
 
 
     render(){
@@ -41,7 +38,6 @@ class Read extends Component {
 
         let filteredArticles = search === "" ? articles: articles.filter(article => article.Tags.toString().toLowerCase().includes(search.toString().toLowerCase()))
         console.log(filteredArticles);
-        debugger
         return(
             <div className="articleListConatiner">
                 <ArticleCard articles={filteredArticles}/>

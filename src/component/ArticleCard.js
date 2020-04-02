@@ -1,5 +1,9 @@
 import  React from "react";
 import ReactHtmlParser from 'react-html-parser';
+import { Route ,Switch, Link} from "react-router-dom"
+import Article from "./Article"
+
+
 
 const ArticleCard = ({articles}) => {
 
@@ -9,13 +13,19 @@ const ArticleCard = ({articles}) => {
         articles.map((article) =>{
             return(
                 <div className="articleContianer">
-                <div>{ReactHtmlParser(article.Title)}</div>
-                <br/>
-                <div>
-                    {ReactHtmlParser(article.Content)}
+                    <Link to={"/read/article-"+article.id} >
+                        <div>{ReactHtmlParser(article.Title)}</div>
+                        <br/>
+                        <div>
+                            { ReactHtmlParser(article.Content) }
+                        </div>
+                    </Link>
+
+                    <Switch>
+
+                            <Route path={"/read/article-"+article.id}   render={() => { return <Article article={article}  /> } } />
+                    </Switch>
                 </div>
-    
-            </div>
             )
         })
         )
