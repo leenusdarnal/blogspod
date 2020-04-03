@@ -20,13 +20,13 @@ class Read extends Component {
             }
         }).then(response => response.json())
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 return this.setState({ articles: response })
             });
 
     }
     componentWillReceiveProps(props) {
-        console.log(props);
+        // console.log(props);
         return this.setState({ search: props.search })
 
     }
@@ -39,7 +39,7 @@ class Read extends Component {
 
 
         let filteredArticles = search === "" ? articles : articles.filter(article => article.Tags.toString().toLowerCase().includes(filterSearch.toString().toLowerCase()))
-        console.log(filteredArticles);
+        // console.log(filteredArticles);
         return (
             <div className="articleListConatiner">
                 <ArticleCard articles={filteredArticles} />

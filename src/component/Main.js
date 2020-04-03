@@ -50,7 +50,7 @@ export default class Main extends Component {
         }
     }
     handletitlechange = (x) => {
-        console.log(x);
+        // console.log(x);
         // this.state.title = x;
     }
     onEditorMounted = (x) => {

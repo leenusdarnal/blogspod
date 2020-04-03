@@ -1,16 +1,16 @@
 .article--container {
     color: black;
     background: lighten($off-white,1);
-    padding: $xl-size;
     word-wrap: break-word;
     border-bottom: 1px solid transparent;
     position: relative;
     opacity: 50%;
-    transition: 0.3s;
+    padding: $xs-size $s-size $l-size $s-size;
+    transition: ease-in-out 0.3s;
 }
 .article--container:hover{
     background: lighten($off-white,5);
-    padding: $xs-size $s-size $l-size $s-size;
+    padding: $xl-size;
     opacity: 90%;
     .article--container__content {
         padding-left: $m-size;

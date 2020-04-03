@@ -118,7 +118,6 @@ class SearchBar extends Component {
                 disabled={this.props.disabled}
                 placeholder={this.props.placeholder}
                 onKeyUp={this.props.onKeyUp}
-
                 />
                 {suggestionsListComponent}
             </React.Fragment>
