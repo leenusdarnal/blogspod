@@ -16,7 +16,7 @@ const ArticleCard = ({ articles }) => {
                                 <Link to={"/read/article-" + article.id}  style={{ textDecoration: 'none' }}>
                                     <div className="article--container">
                                         <div className='article--container__title'>{ReactHtmlParser(article.Title)}</div>
-                                        <div className='article--container__content'>{ReactHtmlParser(article.Content.slice(0,100))}</div>
+                                        <div className='article--container__content'>{ReactHtmlParser(article.Content.slice(0,100)+ "...")}</div>
                                     </div>
                                 </Link>
                             </Route>

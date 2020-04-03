@@ -40,7 +40,9 @@ export default class Create extends Component {
     render() {
         return (
             <div>
-                <input id="tags" />
+                <input id="tags" placeholder="Tags Here" />
+                <br />
+                <br />
                 <Dante
                     body_placeholder={"Title here"}
                     onChange={editor => {
@@ -54,24 +56,12 @@ export default class Create extends Component {
                 />
 
                 <br />
-                <button onClick={this.handlePostArticle}>Publish article</button>
+                <button onClick={() =>{ alert(" Your post have been published.");return this.handlePostArticle}}>Publish article</button>
                 <br />
                 <br />
                 <br />
                 <br />
                 <br />
-{/* 
-                <hr />
-                {this.state.titleObj}
-                <br />
-                {this.state.contentObj}
-                <br /> */}
-
-
-                {/* <button onClick={() => {
-                    console.log(stateToHTML(this.state.Title.state.editorState._immutable.currentContent))
-                    console.log(stateToHTML(this.state.Content.state.editorState._immutable.currentContent))
-                }}>click me</button> */}
                 <br />
             </div>
         )
