@@ -15,7 +15,7 @@ class Article extends Component {
     render() {
         return (
             <div className="article--contianer_selected">
-                <div className="article--container__title_selected">{ReactHtmlParser(this.props.article.Title)}</div>
+                <div className="article--container__title_selected"><strong>{ReactHtmlParser(this.props.article.Title)}</strong></div>
                 <div className="article--container__content_selected">
                     {ReactHtmlParser(this.props.article.Content)}
                 </div>

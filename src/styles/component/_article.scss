@@ -7,13 +7,25 @@
     opacity: 50%;
     padding: $xs-size $s-size $l-size $s-size;
     transition: ease-in-out 0.3s;
+    .article--container__content {
+        padding-left: $m-size;
+    }
+    .article--container__content_2 {
+        padding-left: $m-size;
+        display: none;
+    }
 }
 .article--container:hover{
     background: lighten($off-white,5);
     padding: $xl-size;
     opacity: 90%;
     .article--container__content {
+        display: none;
         padding-left: $m-size;
+    }
+    .article--container__content_2 {
+        padding-left: $m-size;
+        display: block;
     }
 }
 .article--container:before {
@@ -36,7 +48,7 @@
     top: 50%;
     left: 0;
     height: 0;
-    border-left: 3px dotted grey;
+    // border-left: 3px dotted grey;
     transition: 0.4s;
 }
 .article--container:hover:after {

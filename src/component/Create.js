@@ -32,6 +32,7 @@ export default class Create extends Component {
         axios.post('https://blogspod.test.bitpod.io/svc/api/Articles', data, options)
             .then((res) => {
                 console.log("RESPONSE ==== : ", res);
+                alert(" Your post have been published.");
             })
             .catch((err) => {
                 console.log("ERROR: ====", err);
@@ -56,7 +57,7 @@ export default class Create extends Component {
                 />
 
                 <br />
-                <button onClick={() =>{ alert(" Your post have been published.");return this.handlePostArticle}}>Publish article</button>
+                <button onClick={() =>{this.handlePostArticle()}}>Publish article</button>
                 <br />
                 <br />
                 <br />

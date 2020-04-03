@@ -5,6 +5,7 @@
     padding: $xl-size;
 }
 
+
 .Comments--container__view_section {
     // border: 1px dotted black;
     padding: 0 $s-size;
@@ -64,11 +65,34 @@
 
 .Comments--container__comment{
     padding:$xs-size $m-size;
+    position: relative;
+    display: flex;
+    border-radius: 1rem;
+    transition: 0.2s;
+}
+.Comments--container__comment:hover{
+    // background: lighten(grey, 40);
+    background-image: linear-gradient(to right, lighten(grey, 40),rgb(245, 245, 245), lighten(grey, 40));
+    // border-left: 5px solid lighten(grey, 40);
 }
 .Comments--container__comment_id{
     font-size: $xs-size;
     font-weight: 700;
+    margin: auto 0;
+    
 }
 .Comments--container__comment_content{
-
+    position: relative;
+    flex-direction: row;
+    flex-grow: 1;
+    padding-left: $m-size;
 }
+// .Comments--container__comment_content::after {
+//     content: '';
+//     position: absolute;
+//     bottom: 0;
+//     left: 5%;
+//     width: 90%;
+//     border-bottom: 1px solid grey;
+//     padding-left: $m-size;
+// }
