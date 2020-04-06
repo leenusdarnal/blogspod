@@ -60,9 +60,11 @@ export default class Main extends Component {
         return (
             <Router>
                 <div className="Header">
-                    <div className="Header--title">
-                        BlogsPod
-                    </div>
+                    <Link to="/read" style={{ textDecoration: 'none',color:"white" }}>
+                        <div className="Header--title">
+                            BlogsPod
+                        </div>
+                    </Link>
                     <Route path='/read' render={()=>(
                         <div className="Header--input">
                             <SearchBar  

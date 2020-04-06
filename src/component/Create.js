@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import Dante from 'Dante2';
 import { stateToHTML } from 'draft-js-export-html';
 import axios from 'axios';
-
+import Chips from "react-chips";
 export default class Create extends Component {
     state = {
-        mycontent: null
+        mycontent: null,
+        chips: []
     }
     content = {};
 
@@ -16,9 +17,10 @@ export default class Create extends Component {
             "Status": "publish",
             "Title": stateToHTML(this.state.Title.state.editorState._immutable.currentContent),
             "Content": stateToHTML(this.state.Content.state.editorState._immutable.currentContent),
-            "Tags": document.getElementById('tags').value.split(","),
+            "Tags": this.state.chips,
             "Email": JSON.parse(localStorage[localStorage[window.$config.oauth.clientId + "lastactiveuserid"]]).userProfile.email
         }
+        
 
         const options = {
             headers: {
@@ -33,15 +35,30 @@ export default class Create extends Component {
             .then((res) => {
                 console.log("RESPONSE ==== : ", res);
                 alert(" Your post have been published.");
+                
+                window.location= window.location.href.replace('create',`read/article-${res.data.id}`);
             })
             .catch((err) => {
                 console.log("ERROR: ====", err);
             })
+}
+
+    onChange = chips => {
+        this.setState({ chips });
+        console.log(this.state.chips)
     }
+
     render() {
         return (
-            <div>
-                <input id="tags" placeholder="Tags Here" />
+            <div style={{paddingLeft: "115px"}}>
+                        <div style={{maxWidth:"350px"}}>
+                            <Chips
+                            value={this.state.chips}
+                            onChange={this.onChange}
+                            placeholder="Tags Here"
+                            createChipKeys={[13,9]}
+                            />
+                        </div>
                 <br />
                 <br />
                 <Dante
@@ -55,7 +72,6 @@ export default class Create extends Component {
                         this.setState({ Content: editor, contentObj: stateToHTML(editor.state.editorState._immutable.currentContent) })
                     }}
                 />
-
                 <br />
                 <button onClick={() =>{this.handlePostArticle()}}>Publish article</button>
                 <br />
@@ -68,41 +84,3 @@ export default class Create extends Component {
         )
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import AlloyEditorComponent from './alloyeditor';
-
-// export default class Create extends Component {
-//     state={
-//         title:'AlloyEditor will make this content editable',
-//     }
-//     render() {
-//         return (
-//             <Fragment>
-//                 <AlloyEditorComponent container='title' onchange={this.handletitlechange}>
-//                     <h1>{this.state.title}</h1>
-//                 </AlloyEditorComponent>
-//                 <AlloyEditorComponent container='content'>
-//                     <p>
-//                         To install React, follow the instructions on <a href="https://github.com/facebook/react/">GitHub</a>.
-//                                 </p>
-//                     <p>
-//                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel metus nunc. Maecenas rhoncus congue faucibus. Sed finibus ultrices turpis. Mauris nulla ante, aliquam a euismod ut, scelerisque nec sem. Nam dapibus ac nulla non ullamcorper. Sed vestibulum a velit non lobortis. Proin sit amet imperdiet urna. Aenean interdum urna augue, vel mollis tortor dictum vitae. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris vitae suscipit magna.
-//                                 </p>
-//                 </AlloyEditorComponent>
-//             </Fragment>
-//         )
-//     }
-// }
