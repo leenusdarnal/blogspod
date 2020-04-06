@@ -20,7 +20,7 @@ export default class Create extends Component {
             "Tags": this.state.chips,
             "Email": JSON.parse(localStorage[localStorage[window.$config.oauth.clientId + "lastactiveuserid"]]).userProfile.email
         }
-        debugger;
+        
 
         const options = {
             headers: {
