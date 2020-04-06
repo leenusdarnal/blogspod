@@ -27,6 +27,18 @@ export default class Comments extends Component {
             })
         }
     }
+    componentWillMount(){
+        if(!this.state.APIstatus){
+            axios.get(`https://blogspod.test.bitpod.io/svc/api/Articles/${this.props.id}/CommentList`, this.options)
+            .then((res) => {
+                console.log("RESPONSE ==== : ", res);
+                this.setState({ data: res.data ,APIstatus: true});
+            })
+            .catch((err) => {
+                console.log("ERROR: ====", err);
+            })
+        }
+    }
     handlePerformAction = () => {
         if (this.state.commentVal.length === 0) {
             alert('please type your comment');
