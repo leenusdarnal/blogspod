@@ -50,7 +50,7 @@ export default class Create extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{paddingLeft: "115px"}}>
                         <div style={{maxWidth:"350px"}}>
                             <Chips
                             value={this.state.chips}
@@ -59,7 +59,6 @@ export default class Create extends Component {
                             createChipKeys={[13,9]}
                             />
                         </div>
-                    {/* <input id="tags" placeholder="Tags Here" /> */}
                 <br />
                 <br />
                 <Dante
