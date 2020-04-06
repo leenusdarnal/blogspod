@@ -20,7 +20,6 @@ export default class Create extends Component {
             "Tags": this.state.chips,
             "Email": JSON.parse(localStorage[localStorage[window.$config.oauth.clientId + "lastactiveuserid"]]).userProfile.email
         }
-        
 
         const options = {
             headers: {
@@ -34,8 +33,7 @@ export default class Create extends Component {
         axios.post('https://blogspod.test.bitpod.io/svc/api/Articles', data, options)
             .then((res) => {
                 console.log("RESPONSE ==== : ", res);
-                alert(" Your post have been published.");
-                
+                // alert(" Your post have been published.");
                 window.location= window.location.href.replace('create',`read/article-${res.data.id}`);
             })
             .catch((err) => {

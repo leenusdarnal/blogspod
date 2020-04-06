@@ -4,7 +4,8 @@ import axios from 'axios'
 export default class Comments extends Component {
     state = {
         data: [],
-        commentVal: ''
+        commentVal: '',
+        APIstatus: false
     }
     options = {
         headers: {
@@ -14,31 +15,24 @@ export default class Comments extends Component {
             Resolver: "requestHeader", "X-Org-Id": "1"
         }
     };
-    componentWillMount() {
-        axios.get(`https://blogspod.test.bitpod.io/svc/api/Articles/${this.props.id}/CommentList`, this.options)
-            .then((res) => {
-                console.log("RESPONSE ==== : ", res);
-                this.setState({ data: res.data });
-            })
-            .catch((err) => {
-                console.log("ERROR: ====", err);
-            })
-    }
     componentDidUpdate() {
-        axios.get(`https://blogspod.test.bitpod.io/svc/api/Articles/${this.props.id}/CommentList`, this.options)
+        if(!this.state.APIstatus){
+            axios.get(`https://blogspod.test.bitpod.io/svc/api/Articles/${this.props.id}/CommentList`, this.options)
             .then((res) => {
                 console.log("RESPONSE ==== : ", res);
-                this.setState({ data: res.data });
+                this.setState({ data: res.data ,APIstatus: true});
             })
             .catch((err) => {
                 console.log("ERROR: ====", err);
             })
+        }
     }
     handlePerformAction = () => {
         if (this.state.commentVal.length === 0) {
             alert('please type your comment');
         } else {
             // console.log(this.state.commentVal);
+            this.state.APIstatus = false;
             const data = {
                 "Dislikes": "0",
                 "Content": this.state.commentVal,
@@ -49,7 +43,7 @@ export default class Comments extends Component {
             axios.post(`https://blogspod.test.bitpod.io/svc/api/Articles/${this.props.id}/CommentList`, data, this.options)
                 .then((res) => {
                     console.log("RESPONSE ==== : ", res);
-                    this.setState((prevState) => ({ data: prevState.data.concat(res.data) }));
+                    this.setState((prevState) => ({ data: prevState.data.concat(res.data)}));
                 })
                 .catch((err) => {
                     console.log("ERROR: ====", err);

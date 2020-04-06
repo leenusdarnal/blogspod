@@ -21,10 +21,10 @@ class Article extends Component {
                 Resolver: "requestHeader", "X-Org-Id": "1"
             }
         };
-        console.log("---------------------------------------------"+props.article.id);
+        // console.log("---------------------------------------------"+props.article.id);
         axios.get(`https://blogspod.test.bitpod.io/svc/api/Articles/${props.article.id}/GetArticleLikes/count`, options)
             .then((res) => {
-                console.log("RESPONSE ==== : ", res.data);
+                console.log("API RESPONSE ==== : ", res.data.count);
                 this.setState({like: res.data.count})
             })
             .catch((err) => {
