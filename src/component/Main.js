@@ -56,6 +56,9 @@ export default class Main extends Component {
     onEditorMounted = (x) => {
 
     }
+    setSuggestions = (x) => {
+        this.state.suggestions=x
+    }
     render() {
         return (
             <Router>
@@ -71,7 +74,8 @@ export default class Main extends Component {
                             disabled={window.location.href.includes('article')} 
                             placeholder="Search topics"
                             onKeyUp={(e) => { return this.setState({ search: e.target.value }) }}
-                            suggestions={["Science","Science2","Math","Technology"]}/>
+                            suggestions={["Science","Science2","Math","Technology"]} 
+                            suggestions={this.state.suggestions} />
                             {/* <input disabled={window.location.href.includes('article')} placeholder="Search topics" onKeyUp={(e) => { return this.setState({ search: e.target.value }) }} /> */}
                         </div>
                     )}/>
@@ -108,7 +112,7 @@ export default class Main extends Component {
                 </div>
                 <div className="Main--body">
                     <Switch>
-                        <Route path="/read" render={() => { return <ReadTab search={this.state.search} /> }} />
+                        <Route path="/read" render={() => { return <ReadTab setSuggestion={this.setSuggestions} search={this.state.search} /> }} />
                         <Route path="/create" component={CreateTab} />
                     </Switch>
                     {/* save button  */}

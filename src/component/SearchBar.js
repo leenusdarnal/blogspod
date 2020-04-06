@@ -3,69 +3,66 @@ import PropTypes from "prop-types";
 
 class SearchBar extends Component {
     static propTypes = {
-            suggestions: PropTypes.instanceOf(Array)
-        };
+        suggestions: PropTypes.instanceOf(Array)
+    };
     static defaultProperty = {
-            suggestions: []
-        };
+        suggestions: []
+    };
     constructor(props) {
-            super(props);
-            this.state = {
+        super(props);
+        this.state = {
             activeSuggestion: 0,
             filteredSuggestions: [],
             showSuggestions: false,
             userInput: ""
-            };
-        }
+        };
+    }
 
     onChange = e => {
-            const { suggestions } = this.props;
-            const userInput = e.currentTarget.value;
+        const { suggestions } = this.props;
+        const userInput = e.currentTarget.value;
 
-            const filteredSuggestions = suggestions.filter(
-            suggestion =>
-                suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-            );
+        const filteredSuggestions = suggestions.filter(
+        suggestion =>
+            suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+        );
 
-            this.setState({
+        this.setState({
             activeSuggestion: 0,
             filteredSuggestions,
             showSuggestions: true,
             userInput: e.currentTarget.value
-            });
-        };
+        });
+    };
 
     onClick = e => {
-            this.setState({
+        this.setState({
             activeSuggestion: 0,
             filteredSuggestions: [],
             showSuggestions: false,
             userInput: e.currentTarget.innerText
-            });
-        };
+        });
+    };
     onKeyDown = e => {
-            const { activeSuggestion, filteredSuggestions } = this.state;
-
-            if (e.keyCode === 13) {
+        const { activeSuggestion, filteredSuggestions } = this.state;
+        if (e.keyCode === 13) {
             this.setState({
                 activeSuggestion: 0,
                 showSuggestions: false,
                 userInput: filteredSuggestions[activeSuggestion]
             });
-            } else if (e.keyCode === 38) {
+        } else if (e.keyCode === 38) {
             if (activeSuggestion === 0) {
                 return;
             }
-
             this.setState({ activeSuggestion: activeSuggestion - 1 });
-            } else if (e.keyCode === 40) {
+        } else if (e.keyCode === 40) {
             if (activeSuggestion - 1 === filteredSuggestions.length) {
                 return;
             }
-
             this.setState({ activeSuggestion: activeSuggestion + 1 });
-            }
-        };
+        }
+    };
 
     render() {
             const {
@@ -111,13 +108,13 @@ class SearchBar extends Component {
             return (
             <React.Fragment>
                 <input
-                type="search"
-                onChange={onChange}
-                onKeyDown={onKeyDown}
-                value={userInput}
-                disabled={this.props.disabled}
-                placeholder={this.props.placeholder}
-                onKeyUp={this.props.onKeyUp}
+                    type="search"
+                    onChange={onChange}
+                    onKeyDown={onKeyDown}
+                    value={userInput}
+                    disabled={this.props.disabled}
+                    placeholder={this.props.placeholder}
+                    onKeyUp={this.props.onKeyUp}
                 />
                 {suggestionsListComponent}
             </React.Fragment>
