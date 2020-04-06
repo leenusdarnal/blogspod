@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import Dante from 'Dante2';
 import { stateToHTML } from 'draft-js-export-html';
 import axios from 'axios';
-
+import Chips from "react-chips";
 export default class Create extends Component {
     state = {
-        mycontent: null
+        mycontent: null,
+        chips: []
     }
     content = {};
 
@@ -16,9 +17,10 @@ export default class Create extends Component {
             "Status": "publish",
             "Title": stateToHTML(this.state.Title.state.editorState._immutable.currentContent),
             "Content": stateToHTML(this.state.Content.state.editorState._immutable.currentContent),
-            "Tags": document.getElementById('tags').value.split(","),
+            "Tags": this.state.chips,
             "Email": JSON.parse(localStorage[localStorage[window.$config.oauth.clientId + "lastactiveuserid"]]).userProfile.email
         }
+        debugger;
 
         const options = {
             headers: {
@@ -39,11 +41,25 @@ export default class Create extends Component {
             .catch((err) => {
                 console.log("ERROR: ====", err);
             })
+}
+
+    onChange = chips => {
+        this.setState({ chips });
+        console.log(this.state.chips)
     }
+
     render() {
         return (
             <div>
-                <input id="tags" placeholder="Tags Here" />
+                        <div style={{maxWidth:"350px"}}>
+                            <Chips
+                            value={this.state.chips}
+                            onChange={this.onChange}
+                            placeholder="Tags Here"
+                            createChipKeys={[13,9]}
+                            />
+                        </div>
+                    {/* <input id="tags" placeholder="Tags Here" /> */}
                 <br />
                 <br />
                 <Dante
