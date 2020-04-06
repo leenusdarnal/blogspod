@@ -61,6 +61,25 @@
     height: 100%;
 }
 
+.article--container__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.article--container__tags {
+    display: inline;
+    list-style: none;
+    li {
+        margin-left: $xs-size;
+        padding: $xxs-size;
+        background: darken($off-white, 3);
+        border-radius: $l-size;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        float: left;
+    }
+}
+
 .article--container__title {
     position: relative;
     h1,
