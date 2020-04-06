@@ -33,6 +33,8 @@ export default class Create extends Component {
             .then((res) => {
                 console.log("RESPONSE ==== : ", res);
                 alert(" Your post have been published.");
+                
+                window.location= window.location.href.replace('create',`read/article-${res.data.id}`);
             })
             .catch((err) => {
                 console.log("ERROR: ====", err);
@@ -55,7 +57,6 @@ export default class Create extends Component {
                         this.setState({ Content: editor, contentObj: stateToHTML(editor.state.editorState._immutable.currentContent) })
                     }}
                 />
-
                 <br />
                 <button onClick={() =>{this.handlePostArticle()}}>Publish article</button>
                 <br />
@@ -68,41 +69,3 @@ export default class Create extends Component {
         )
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import AlloyEditorComponent from './alloyeditor';
-
-// export default class Create extends Component {
-//     state={
-//         title:'AlloyEditor will make this content editable',
-//     }
-//     render() {
-//         return (
-//             <Fragment>
-//                 <AlloyEditorComponent container='title' onchange={this.handletitlechange}>
-//                     <h1>{this.state.title}</h1>
-//                 </AlloyEditorComponent>
-//                 <AlloyEditorComponent container='content'>
-//                     <p>
-//                         To install React, follow the instructions on <a href="https://github.com/facebook/react/">GitHub</a>.
-//                                 </p>
-//                     <p>
-//                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel metus nunc. Maecenas rhoncus congue faucibus. Sed finibus ultrices turpis. Mauris nulla ante, aliquam a euismod ut, scelerisque nec sem. Nam dapibus ac nulla non ullamcorper. Sed vestibulum a velit non lobortis. Proin sit amet imperdiet urna. Aenean interdum urna augue, vel mollis tortor dictum vitae. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris vitae suscipit magna.
-//                                 </p>
-//                 </AlloyEditorComponent>
-//             </Fragment>
-//         )
-//     }
-// }
